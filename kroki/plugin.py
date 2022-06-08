@@ -84,7 +84,8 @@ class KrokiPlugin(BasePlugin):
         mkdocs_file = File(get_url, self._tmp_dir.name, self._output_dir, False)
         files.append(mkdocs_file)
 
-        return f'{self.config['ImagePath']}{file_name}'
+        image_path = self.config['ImagePath']
+        return f'{image_path}{file_name}'
 
     def _replace_kroki_block(self, match_obj, files, page):
         kroki_type = match_obj.group(1).lower()
