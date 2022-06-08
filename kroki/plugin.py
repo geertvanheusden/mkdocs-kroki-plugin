@@ -31,6 +31,7 @@ class KrokiPlugin(BasePlugin):
         ('EmbedImages', config.config_options.Type(bool, default=False)),
         ('DownloadDir', config.config_options.Type(str, default='images/kroki_generated')),
         ('FencePrefix', config.config_options.Type(str, default='kroki-')),
+        ('ImagePath', config.config_options.Type(str, default='')),
     )
 
     fence_prefix = None
@@ -83,7 +84,7 @@ class KrokiPlugin(BasePlugin):
         mkdocs_file = File(get_url, self._tmp_dir.name, self._output_dir, False)
         files.append(mkdocs_file)
 
-        return f'/{get_url}'
+        return f'{self.config['ImagePath']}{file_name}'
 
     def _replace_kroki_block(self, match_obj, files, page):
         kroki_type = match_obj.group(1).lower()
